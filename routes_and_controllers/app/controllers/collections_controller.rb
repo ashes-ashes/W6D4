@@ -1,13 +1,19 @@
 class CollectionsController < ApplicationController
 
   def index
-    if params.has_key?(:id)
-      render json: Collection.find(params[:id]).members
-    elsif params.has_key?(:user_id)
+    if params.has_key?(:user_id)
       render json: Collection.where(user_id: params[:user_id])
     else
       render json: Collection.all
     end
+  end
+
+  def show
+    collection = Collection.find(params[:id])
+    render json: {
+      info: collection,
+      works: collection.members
+    } 
   end
 
   def create

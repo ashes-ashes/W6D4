@@ -21,10 +21,15 @@ Rails.application.routes.draw do
 
   resources :likes, only: [:index, :create, :destroy]
 
+  resources :collections, only: [:index, :show, :create, :update, :destroy]
+
+  resources :collection_memberships, only: [:create, :destroy]
+
   resources :users do
     resources :artworks, only: [:index]
     resources :comments, only: [:index]
     resources :likes, only: [:index]
+    resources :collections, only: [:index]
   end
 
   resources :artworks do

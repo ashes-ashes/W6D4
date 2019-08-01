@@ -10,6 +10,7 @@
 #
 
 class CollectionMembership < ApplicationRecord
+  validates :artwork_id, uniqueness: {scope: :collection_id}
 
   belongs_to :artwork,
     foreign_key: :artwork_id,

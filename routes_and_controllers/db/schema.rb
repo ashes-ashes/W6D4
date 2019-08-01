@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_01_214736) do
+ActiveRecord::Schema.define(version: 2019_08_01_222203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_08_01_214736) do
     t.integer "collection_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["artwork_id", "collection_id"], name: "index_collection_memberships_on_artwork_id_and_collection_id", unique: true
     t.index ["artwork_id"], name: "index_collection_memberships_on_artwork_id"
     t.index ["collection_id"], name: "index_collection_memberships_on_collection_id"
   end
