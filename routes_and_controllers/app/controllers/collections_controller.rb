@@ -9,11 +9,15 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    collection = Collection.find(params[:id])
-    render json: {
-      info: collection,
-      works: collection.members
-    } 
+    collection = Collection.where(id: params[:user_id])
+    unless collection.empty?
+      render json: {
+        info: collection,
+        works: collection.members
+      } 
+    else
+      render plain: "Collection not found.", status: :not_found
+    end
   end
 
   def create
@@ -27,7 +31,7 @@ class CollectionsController < ApplicationController
   end
 
   def update
-    collection = Collection.find(id: params[:id])
+    collection = Collection.find(params[:id])
 
     if collection.update(collection_params)
       render json: collection
@@ -37,7 +41,7 @@ class CollectionsController < ApplicationController
   end
 
   def destroy
-    collection = Collection.find(id: params[:id])
+    collection = Collection.find(params[:id])
 
     if collection.delete
       render json: collection
