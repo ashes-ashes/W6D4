@@ -30,6 +30,11 @@ Rails.application.routes.draw do
   resources :artworks do
     resources :comments, only: [:index]
     resources :likes, only: [:index]
+    get 'favorite', on: :member
+  end
+
+  resources :artwork_shares do
+    get 'favorite', on: :member
   end
 
   resources :comments do 

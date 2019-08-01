@@ -18,6 +18,16 @@ class ArtworkSharesController < ApplicationController
     end
   end
 
+  def favorite
+    share = ArtworkShare.find(params[:id])
+    toggle = !share.favorite
+    if share.update({favorite: toggle})
+      render json: share
+    else
+      render json: share.errors.full_messages, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def artwork_share_params
