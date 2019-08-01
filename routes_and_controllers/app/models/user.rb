@@ -35,5 +35,10 @@ class User < ApplicationRecord
     class_name: "Like",
     dependent: :destroy
 
+  has_many :collections,
+    foreign_key: :user_id,
+    class_name: "Collection",
+    dependent: :destroy
+
 
 end
