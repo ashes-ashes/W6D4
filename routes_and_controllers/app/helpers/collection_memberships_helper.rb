@@ -1,0 +1,2 @@
+module CollectionMembershipsHelper
+end
